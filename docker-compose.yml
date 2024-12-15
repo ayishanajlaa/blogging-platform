@@ -1,0 +1,42 @@
+version: '3.1'
+
+services:
+  user:
+    container_name: user
+    build:
+      context: ./user-service
+    ports:
+      - "5001:5001"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/userdb
+    networks:
+      - app-network
+
+  blog:
+    container_name: blog
+    build:
+      context: ./blog-service
+    ports:
+      - "5002:5002"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/blogdb
+      - USER_SERVICE_URL=http://user:5001/api/users/verify-token  
+    depends_on:
+      - user
+    networks:
+      - app-network
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.31.27.0/24

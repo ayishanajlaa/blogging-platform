@@ -1,0 +1,50 @@
+# Node.js
+/node_modules/
+/npm-debug.log
+/yarn-error.log
+
+# Docker
+*.dockerfile
+docker-compose.override.yml
+docker-compose.yml.override
+.docker
+.dockerignore
+
+# Build outputs
+/dist/
+/build/
+*.out
+
+# Environment variables
+.env
+.env.local
+.env.production
+.env.development
+.env.test
+
+# Logs
+*.log
+logs/
+pids/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.iml
+
+# Mac OS
+.DS_Store
+
+# Linux
+*~
+*.swp
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Misc
+*.tgz
+*.tar
